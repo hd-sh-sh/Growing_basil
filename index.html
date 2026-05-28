@@ -3,237 +3,261 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>안녕! 나는 향기 요정 바질이야🌿</title>
-    <!-- 귀여운 폰트 불러오기 -->
+    <title>안녕? 난 바질이야! 🌱</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root {
-            --primary-color: #4CAF50;
-            --bg-color: #F1F8E9;
-            --card-bg: #FFFFFF;
-            --text-color: #333333;
-        }
-
         body {
             font-family: 'Jua', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            margin: 0;
-            padding: 0;
-            line-height: 1.6;
+            background-color: #f0fdf4; /* 연한 초록색 배경 */
+            color: #166534; /* 진한 초록색 글자 */
+        }
+        
+        /* 부드러운 스크롤 */
+        html {
+            scroll-behavior: smooth;
         }
 
-        header {
-            background-color: var(--primary-color);
-            color: white;
-            text-align: center;
-            padding: 2rem 1rem;
-            border-bottom-left-radius: 30px;
-            border-bottom-right-radius: 30px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        /* 둥실둥실 애니메이션 */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        .floating {
+            animation: float 3s ease-in-out infinite;
         }
 
-        header h1 {
-            margin: 0;
-            font-size: 2.5rem;
-            letter-spacing: 2px;
+        /* 반짝이는 효과 */
+        @keyframes sparkle {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        .sparkle-text {
+            animation: sparkle 2s infinite;
         }
 
-        header p {
-            font-size: 1.2rem;
-            margin-top: 10px;
-        }
-
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 2rem 1rem;
-        }
-
-        .intro-card {
-            background-color: var(--card-bg);
-            border-radius: 20px;
-            padding: 2rem;
-            text-align: center;
-            box-shadow: 0 8px 15px rgba(0,0,0,0.05);
-            margin-bottom: 2rem;
-            border: 3px dashed var(--primary-color);
-        }
-
-        .intro-card img {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 5px solid #C8E6C9;
-            margin-bottom: 1rem;
-        }
-
-        .step-container {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-
+        /* 카드 호버 효과 */
         .step-card {
-            background-color: var(--card-bg);
-            border-radius: 20px;
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-            box-shadow: 0 6px 12px rgba(0,0,0,0.08);
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-
         .step-card:hover {
             transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
         }
 
-        .step-image {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-        }
-
-        .step-content {
-            padding: 1.5rem;
-        }
-
-        .step-number {
-            display: inline-block;
-            background-color: var(--primary-color);
-            color: white;
-            width: 40px;
-            height: 40px;
-            line-height: 40px;
-            text-align: center;
-            border-radius: 50%;
-            font-size: 1.5rem;
-            margin-bottom: 10px;
-        }
-
-        .step-title {
-            font-size: 1.5rem;
-            color: var(--primary-color);
-            margin: 0 0 10px 0;
-        }
-
-        .step-text {
-            font-size: 1.2rem;
-            margin: 0;
-            color: #555;
-        }
-
-        footer {
-            text-align: center;
-            padding: 2rem;
-            font-size: 1.2rem;
-            color: #777;
-        }
-
-        /* 데스크탑 화면을 위한 설정 (반응형) */
-        @media (min-width: 768px) {
-            .step-card {
-                flex-direction: row;
-                height: 250px;
-            }
-            .step-image {
-                width: 40%;
-                height: 100%;
-            }
-            .step-content {
-                width: 60%;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-            }
+        /* 말풍선 꼬리 */
+        .speech-bubble::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-width: 15px 15px 0;
+            border-style: solid;
+            border-color: white transparent transparent transparent;
         }
     </style>
 </head>
-<body>
+<body class="antialiased min-h-screen flex flex-col">
 
-    <header>
-        <h1>🌱 바질이 키우기 대작전 🌱</h1>
-        <p>우리 집 작은 텃밭 만들기 프로젝트!</p>
+    <nav class="bg-green-500 p-4 sticky top-0 z-50 shadow-md">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-white flex items-center gap-2">
+                <i class="fa-solid fa-leaf"></i> 바질 친구
+            </a>
+            <div class="hidden md:flex gap-6 text-white font-lg">
+                <a href="#intro" class="hover:text-green-200 transition">내 소개</a>
+                <a href="#grow-steps" class="hover:text-green-200 transition">키우는 방법</a>
+                <a href="#tips" class="hover:text-green-200 transition">꿀팁</a>
+            </div>
+            <button id="menu-btn" class="md:hidden text-white text-2xl">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+        <!-- 모바일 메뉴 -->
+        <div id="mobile-menu" class="hidden md:hidden mt-4 flex flex-col gap-3 text-center pb-2">
+            <a href="#intro" class="text-white hover:bg-green-600 py-2 rounded">내 소개</a>
+            <a href="#grow-steps" class="text-white hover:bg-green-600 py-2 rounded">키우는 방법</a>
+            <a href="#tips" class="text-white hover:bg-green-600 py-2 rounded">꿀팁</a>
+        </div>
+    </nav>
+
+    <header id="intro" class="container mx-auto px-4 py-16 flex flex-col md:flex-row items-center justify-center min-h-[80vh] gap-8">
+        <div class="w-full md:w-1/2 flex justify-center order-2 md:order-1 relative">
+            <div class="relative w-64 h-64 md:w-80 md:h-80 floating">
+                <!-- SVG 바질 캐릭터 -->
+                <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" class="w-full h-full drop-shadow-xl">
+                    <!-- 화분 -->
+                    <path d="M50 140 L150 140 L130 190 L70 190 Z" fill="#D2691E" stroke="#8B4513" stroke-width="3"/>
+                    <!-- 흙 -->
+                    <ellipse cx="100" cy="140" rx="50" ry="10" fill="#654321"/>
+                    
+                    <!-- 줄기 -->
+                    <path d="M100 140 Q90 90 100 40" fill="none" stroke="#228B22" stroke-width="8" stroke-linecap="round"/>
+                    
+                    <!-- 잎사귀 (얼굴) -->
+                    <path d="M100 40 C60 0, 10 70, 100 120 C190 70, 140 0, 100 40" fill="#32CD32" stroke="#228B22" stroke-width="4"/>
+                    
+                    <!-- 눈 -->
+                    <circle cx="80" cy="65" rx="8" fill="white"/>
+                    <circle cx="80" cy="65" rx="4" fill="black"/>
+                    <circle cx="78" cy="63" rx="2" fill="white"/> <!-- 눈동자 반짝임 -->
+                    
+                    <circle cx="120" cy="65" rx="8" fill="white"/>
+                    <circle cx="120" cy="65" rx="4" fill="black"/>
+                    <circle cx="118" cy="63" rx="2" fill="white"/> <!-- 눈동자 반짝임 -->
+                    
+                    <!-- 볼터치 -->
+                    <circle cx="65" cy="75" rx="6" fill="#FFB6C1" opacity="0.6"/>
+                    <circle cx="135" cy="75" rx="6" fill="#FFB6C1" opacity="0.6"/>
+                    
+                    <!-- 입 (웃는 모양) -->
+                    <path d="M90 85 Q100 95 110 85" fill="none" stroke="black" stroke-width="3" stroke-linecap="round"/>
+                </svg>
+            </div>
+        </div>
+        
+        <div class="w-full md:w-1/2 text-center md:text-left order-1 md:order-2">
+            <div class="bg-white p-6 rounded-3xl shadow-lg relative speech-bubble mb-8 mx-auto md:mx-0 max-w-md">
+                <h1 class="text-4xl md:text-5xl font-bold text-green-600 mb-4">안녕? 난 바질이야! 🌱</h1>
+                <p class="text-xl text-gray-700 leading-relaxed">
+                    만나서 반가워! 나는 향긋한 냄새가 나는 <span class="text-green-500 font-bold sparkle-text">허브</span> 친구란다. <br>
+                    나를 예쁘게 키워주면 맛있는 요리에도 들어갈 수 있어! <br>
+                    나랑 같이 쑥쑥 커볼래?
+                </p>
+            </div>
+            <a href="#grow-steps" class="inline-block bg-green-500 hover:bg-green-600 text-white text-2xl font-bold py-4 px-8 rounded-full transition transform hover:scale-105 shadow-md">
+                나 키우는 방법 알아보기 <i class="fa-solid fa-arrow-down ml-2 animate-bounce"></i>
+            </a>
+        </div>
     </header>
 
-    <div class="container">
-        <!-- 인트로 섹션 -->
-        <div class="intro-card">
-            <img src="https://images.unsplash.com/photo-1615486171545-212130e527d9?auto=format&fit=crop&w=400&q=80" alt="귀여운 바질">
-            <h2>"안녕! 나는 향기 요정 '바질이'야! 🧚‍♀️"</h2>
-            <p style="font-size: 1.2rem;">
-                만나서 정말 반가워! 나는 피자랑 파스타에 들어가면 마법처럼 맛있는 향기를 내는 요정이야.<br>
-                내가 너희 집에서 무럭무럭 자랄 수 있도록 나를 돌보는 방법을 알려줄게.<br>
-                내 이야기를 잘 듣고 나를 예쁘게 키워줄래?
-            </p>
-        </div>
+    <section id="grow-steps" class="py-16 bg-white/50 relative overflow-hidden">
+        <!-- 배경 장식용 잎사귀들 -->
+        <i class="fa-solid fa-leaf absolute text-green-200 text-6xl opacity-50 top-10 left-10 -rotate-45"></i>
+        <i class="fa-solid fa-leaf absolute text-green-200 text-4xl opacity-50 bottom-20 right-10 rotate-45"></i>
+        <i class="fa-solid fa-seedling absolute text-green-200 text-8xl opacity-30 top-1/2 left-1/4"></i>
 
-        <!-- 단계별 설명 섹션 -->
-        <div class="step-container">
+        <div class="container mx-auto px-4 relative z-10">
+            <h2 class="text-4xl md:text-5xl font-bold text-center text-green-700 mb-16">
+                <i class="fa-solid fa-list-check"></i> 바질 친구 돌보기 대작전!
+            </h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                
+                <!-- Step 1 -->
+                <div class="step-card bg-white rounded-3xl p-6 border-4 border-green-300 relative pt-12 text-center">
+                    <div class="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-green-500 text-white w-16 h-16 rounded-full flex items-center justify-center text-3xl font-bold border-4 border-white shadow-md">1</div>
+                    <div class="text-5xl mb-4 text-amber-700"><i class="fa-solid fa-sun"></i></div>
+                    <h3 class="text-2xl font-bold text-green-600 mb-3">햇빛을 사랑해!</h3>
+                    <p class="text-gray-700 text-lg">
+                        나는 <b>따뜻한 햇빛</b>을 너무너무 좋아해! 하루에 최소 6시간 정도는 밝은 햇빛을 볼 수 있는 창가에 나를 놓아줘. 햇빛을 많이 받을수록 내 잎이 튼튼해지고 향기도 좋아진단다!
+                    </p>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="step-card bg-white rounded-3xl p-6 border-4 border-blue-300 relative pt-12 text-center">
+                    <div class="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-blue-500 text-white w-16 h-16 rounded-full flex items-center justify-center text-3xl font-bold border-4 border-white shadow-md">2</div>
+                    <div class="text-5xl mb-4 text-blue-500"><i class="fa-solid fa-droplet"></i></div>
+                    <h3 class="text-2xl font-bold text-blue-600 mb-3">목이 마를 때 물 주기</h3>
+                    <p class="text-gray-700 text-lg">
+                        매일매일 주는 것보단 <b>흙이 말랐을 때 듬뿍</b> 주는 게 좋아. 손가락으로 흙을 살짝 만져보고 뽀송뽀송하다면 화분 밑으로 물이 흘러나올 때까지 시원하게 물을 줘!
+                    </p>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="step-card bg-white rounded-3xl p-6 border-4 border-yellow-300 relative pt-12 text-center">
+                    <div class="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-yellow-500 text-white w-16 h-16 rounded-full flex items-center justify-center text-3xl font-bold border-4 border-white shadow-md">3</div>
+                    <div class="text-5xl mb-4 text-amber-600"><i class="fa-solid fa-temperature-half"></i></div>
+                    <h3 class="text-2xl font-bold text-yellow-600 mb-3">따뜻한 방이 좋아</h3>
+                    <p class="text-gray-700 text-lg">
+                        추운 건 질색이야! 오들오들 떨게 된단다. 사람 친구들이 생활하기 좋은 <b>따뜻한 온도(20~25도)</b>가 나한테도 딱 맞아. 겨울엔 꼭 따뜻한 방 안으로 들여보내 줘!
+                    </p>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="step-card bg-white rounded-3xl p-6 border-4 border-pink-300 relative pt-12 text-center">
+                    <div class="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-pink-500 text-white w-16 h-16 rounded-full flex items-center justify-center text-3xl font-bold border-4 border-white shadow-md">4</div>
+                    <div class="text-5xl mb-4 text-pink-500"><i class="fa-solid fa-scissors"></i></div>
+                    <h3 class="text-2xl font-bold text-pink-600 mb-3">순지르기 (머리 자르기)</h3>
+                    <p class="text-gray-700 text-lg">
+                        내가 위로만 길게 자라면 안 예쁘겠지? 줄기 위쪽을 <b>똑! 하고 따주면 (순지르기)</b>, 옆으로 새 가지가 나와서 더 풍성하고 멋진 모습으로 자랄 수 있어. 아프지 않으니 걱정 마!
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="tips" class="container mx-auto px-4 py-16">
+        <div class="bg-green-100 rounded-3xl p-8 shadow-inner border border-green-200">
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-green-800 mb-8">
+                <i class="fa-solid fa-lightbulb text-yellow-500"></i> 바질이가 알려주는 비밀 꿀팁!
+            </h2>
             
-            <!-- 1단계 -->
-            <div class="step-card">
-                <img class="step-image" src="https://images.unsplash.com/photo-1592424034878-8319fdbdf405?auto=format&fit=crop&w=400&q=80" alt="씨앗 심기">
-                <div class="step-content">
-                    <div class="step-number">1</div>
-                    <h3 class="step-title">포근한 흙 이불을 덮어줘!</h3>
-                    <p class="step-text">
-                        작고 귀여운 내 씨앗을 화분에 톡톡 떨어뜨리고, 흙 이불을 살짝 덮어줘. 
-                        숨을 쉴 수 있게 너무 꾹꾹 누르지 말고 부드럽게 토닥토닥해 주는 게 좋아! 
-                        약 1주일 정도 지나면 내가 귀여운 새싹으로 뿅! 하고 인사할 거야.
-                    </p>
+            <div class="space-y-6 max-w-3xl mx-auto">
+                
+                <div class="bg-white p-4 rounded-xl shadow flex gap-4 items-start">
+                    <div class="text-3xl text-red-500 mt-1"><i class="fa-solid fa-circle-exclamation"></i></div>
+                    <div>
+                        <h4 class="text-xl font-bold text-gray-800 mb-2">Q. 내 잎이 시무룩하게 축 처졌어! ㅠㅠ</h4>
+                        <p class="text-gray-600">물이 부족해서 목이 마르다는 신호야! 빨리 시원한 물을 듬뿍 주면 금세 다시 생생하게 일어날 거야. 너무 많이 줘서 흙이 계속 축축하면 뿌리가 숨을 못 쉬니 조심해!</p>
+                    </div>
                 </div>
-            </div>
 
-            <!-- 2단계 -->
-            <div class="step-card">
-                <img class="step-image" src="https://images.unsplash.com/photo-1545165375-1b744b9ed444?auto=format&fit=crop&w=400&q=80" alt="물 주기">
-                <div class="step-content">
-                    <div class="step-number">2</div>
-                    <h3 class="step-title">목이 말라요! 꿀꺽꿀꺽 물 주기</h3>
-                    <p class="step-text">
-                        나는 물 마시는 걸 아주 좋아해! 겉에 있는 흙을 손가락으로 살짝 만져보고, 
-                        흙이 바싹 말랐을 때 물을 흠뻑 줘. 
-                        화분 밑으로 물이 주르륵 흘러나올 때까지 시원하게 샤워시켜 주는 게 포인트야! 🚿
-                    </p>
+                <div class="bg-white p-4 rounded-xl shadow flex gap-4 items-start">
+                    <div class="text-3xl text-purple-500 mt-1"><i class="fa-solid fa-spa"></i></div>
+                    <div>
+                        <h4 class="text-xl font-bold text-gray-800 mb-2">Q. 예쁜 꽃이 피려고 해!</h4>
+                        <p class="text-gray-600">꽃이 피는 건 예쁘지만, 그러면 내 잎이 질겨지고 맛이 없어져. 꽃망울이 보이면 미안하지만 <b>똑! 따줘야 해.</b> 그래야 잎을 계속 향긋하게 유지할 수 있단다.</p>
+                    </div>
                 </div>
-            </div>
 
-            <!-- 3단계 -->
-            <div class="step-card">
-                <img class="step-image" src="https://images.unsplash.com/photo-1533038590840-1cde6e668a91?auto=format&fit=crop&w=400&q=80" alt="햇빛과 바람">
-                <div class="step-content">
-                    <div class="step-number">3</div>
-                    <h3 class="step-title">따뜻한 햇살과 시원한 바람이 좋아</h3>
-                    <p class="step-text">
-                        나는 해바라기처럼 햇빛을 정말 사랑해! 하루에 최소 6시간은 햇빛을 보게 해줘.
-                        그리고 답답한 건 싫으니까 창문을 열어서 시원한 바람이 솔솔 불게 해준다면, 
-                        내가 아주 기분이 좋아서 잎이 쑥쑥 커질 거야! ☀️💨
-                    </p>
+                <div class="bg-white p-4 rounded-xl shadow flex gap-4 items-start">
+                    <div class="text-3xl text-orange-500 mt-1"><i class="fa-solid fa-pizza-slice"></i></div>
+                    <div>
+                        <h4 class="text-xl font-bold text-gray-800 mb-2">Q. 내 잎을 어떻게 먹으면 맛있어?</h4>
+                        <p class="text-gray-600">피자 위에 올려 먹어도 맛있고, 토마토랑 같이 샐러드를 만들어 먹어도 최고야! 잘 으깨서 '바질 페스토'라는 소스를 만들면 파스타나 빵에 발라 먹기 아주 좋아. 냠냠!</p>
+                    </div>
                 </div>
-            </div>
 
-            <!-- 4단계 -->
-            <div class="step-card">
-                <img class="step-image" src="https://images.unsplash.com/photo-1628156170668-3069408cb5c4?auto=format&fit=crop&w=400&q=80" alt="수확하기">
-                <div class="step-content">
-                    <div class="step-number">4</div>
-                    <h3 class="step-title">톡톡! 이발을 하면 더 튼튼해져요</h3>
-                    <p class="step-text">
-                        내 키가 너무 훌쩍 커지면 맨 위에 있는 잎을 가위로 똑! 하고 잘라줘(이걸 '순지르기'라고 해). 
-                        아프지 않으니 걱정 마! 오히려 옆으로 새로운 팔이 생겨나서 훨씬 더 빵빵하고 튼튼한 바질이가 될 수 있어. 
-                        자른 잎은 피자 위에 올려 먹어봐! 🍕
-                    </p>
-                </div>
             </div>
-
         </div>
-    </div>
+    </section>
 
-    <footer>
-        <p>✨ 사랑과 정성으로 바질이를 멋지게 키워보세요! ✨</p>
+    <footer class="bg-green-600 text-white text-center py-8 mt-auto">
+        <p class="text-xl mb-2">나를 예쁘게 키워줘서 고마워! 💚</p>
+        <p class="text-sm opacity-75">초등학생을 위한 바질 키우기 가이드</p>
     </footer>
 
+    <script>
+        // 모바일 메뉴 토글
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // 모바일 메뉴 링크 클릭 시 메뉴 닫기
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // 부드러운 스크롤 (safari 호환성)
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
 </body>
 </html>
