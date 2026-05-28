@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>안녕! 나는 향기 요정 바질이야🌿</title>
+    <!-- 귀여운 폰트 불러오기 -->
+    <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #4CAF50;
+            --bg-color: #F1F8E9;
+            --card-bg: #FFFFFF;
+            --text-color: #333333;
+        }
+
+        body {
+            font-family: 'Jua', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            border-bottom-left-radius: 30px;
+            border-bottom-right-radius: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            letter-spacing: 2px;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            margin-top: 10px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        .intro-card {
+            background-color: var(--card-bg);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 8px 15px rgba(0,0,0,0.05);
+            margin-bottom: 2rem;
+            border: 3px dashed var(--primary-color);
+        }
+
+        .intro-card img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid #C8E6C9;
+            margin-bottom: 1rem;
+        }
+
+        .step-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .step-card {
+            background-color: var(--card-bg);
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+        }
+
+        .step-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .step-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .step-content {
+            padding: 1.5rem;
+        }
+
+        .step-number {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .step-title {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin: 0 0 10px 0;
+        }
+
+        .step-text {
+            font-size: 1.2rem;
+            margin: 0;
+            color: #555;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            font-size: 1.2rem;
+            color: #777;
+        }
+
+        /* 데스크탑 화면을 위한 설정 (반응형) */
+        @media (min-width: 768px) {
+            .step-card {
+                flex-direction: row;
+                height: 250px;
+            }
+            .step-image {
+                width: 40%;
+                height: 100%;
+            }
+            .step-content {
+                width: 60%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>🌱 바질이 키우기 대작전 🌱</h1>
+        <p>우리 집 작은 텃밭 만들기 프로젝트!</p>
+    </header>
+
+    <div class="container">
+        <!-- 인트로 섹션 -->
+        <div class="intro-card">
+            <img src="https://images.unsplash.com/photo-1615486171545-212130e527d9?auto=format&fit=crop&w=400&q=80" alt="귀여운 바질">
+            <h2>"안녕! 나는 향기 요정 '바질이'야! 🧚‍♀️"</h2>
+            <p style="font-size: 1.2rem;">
+                만나서 정말 반가워! 나는 피자랑 파스타에 들어가면 마법처럼 맛있는 향기를 내는 요정이야.<br>
+                내가 너희 집에서 무럭무럭 자랄 수 있도록 나를 돌보는 방법을 알려줄게.<br>
+                내 이야기를 잘 듣고 나를 예쁘게 키워줄래?
+            </p>
+        </div>
+
+        <!-- 단계별 설명 섹션 -->
+        <div class="step-container">
+            
+            <!-- 1단계 -->
+            <div class="step-card">
+                <img class="step-image" src="https://images.unsplash.com/photo-1592424034878-8319fdbdf405?auto=format&fit=crop&w=400&q=80" alt="씨앗 심기">
+                <div class="step-content">
+                    <div class="step-number">1</div>
+                    <h3 class="step-title">포근한 흙 이불을 덮어줘!</h3>
+                    <p class="step-text">
+                        작고 귀여운 내 씨앗을 화분에 톡톡 떨어뜨리고, 흙 이불을 살짝 덮어줘. 
+                        숨을 쉴 수 있게 너무 꾹꾹 누르지 말고 부드럽게 토닥토닥해 주는 게 좋아! 
+                        약 1주일 정도 지나면 내가 귀여운 새싹으로 뿅! 하고 인사할 거야.
+                    </p>
+                </div>
+            </div>
+
+            <!-- 2단계 -->
+            <div class="step-card">
+                <img class="step-image" src="https://images.unsplash.com/photo-1545165375-1b744b9ed444?auto=format&fit=crop&w=400&q=80" alt="물 주기">
+                <div class="step-content">
+                    <div class="step-number">2</div>
+                    <h3 class="step-title">목이 말라요! 꿀꺽꿀꺽 물 주기</h3>
+                    <p class="step-text">
+                        나는 물 마시는 걸 아주 좋아해! 겉에 있는 흙을 손가락으로 살짝 만져보고, 
+                        흙이 바싹 말랐을 때 물을 흠뻑 줘. 
+                        화분 밑으로 물이 주르륵 흘러나올 때까지 시원하게 샤워시켜 주는 게 포인트야! 🚿
+                    </p>
+                </div>
+            </div>
+
+            <!-- 3단계 -->
+            <div class="step-card">
+                <img class="step-image" src="https://images.unsplash.com/photo-1533038590840-1cde6e668a91?auto=format&fit=crop&w=400&q=80" alt="햇빛과 바람">
+                <div class="step-content">
+                    <div class="step-number">3</div>
+                    <h3 class="step-title">따뜻한 햇살과 시원한 바람이 좋아</h3>
+                    <p class="step-text">
+                        나는 해바라기처럼 햇빛을 정말 사랑해! 하루에 최소 6시간은 햇빛을 보게 해줘.
+                        그리고 답답한 건 싫으니까 창문을 열어서 시원한 바람이 솔솔 불게 해준다면, 
+                        내가 아주 기분이 좋아서 잎이 쑥쑥 커질 거야! ☀️💨
+                    </p>
+                </div>
+            </div>
+
+            <!-- 4단계 -->
+            <div class="step-card">
+                <img class="step-image" src="https://images.unsplash.com/photo-1628156170668-3069408cb5c4?auto=format&fit=crop&w=400&q=80" alt="수확하기">
+                <div class="step-content">
+                    <div class="step-number">4</div>
+                    <h3 class="step-title">톡톡! 이발을 하면 더 튼튼해져요</h3>
+                    <p class="step-text">
+                        내 키가 너무 훌쩍 커지면 맨 위에 있는 잎을 가위로 똑! 하고 잘라줘(이걸 '순지르기'라고 해). 
+                        아프지 않으니 걱정 마! 오히려 옆으로 새로운 팔이 생겨나서 훨씬 더 빵빵하고 튼튼한 바질이가 될 수 있어. 
+                        자른 잎은 피자 위에 올려 먹어봐! 🍕
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <footer>
+        <p>✨ 사랑과 정성으로 바질이를 멋지게 키워보세요! ✨</p>
+    </footer>
+
+</body>
+</html>
